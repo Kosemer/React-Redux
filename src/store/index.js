@@ -1,11 +1,11 @@
 import { legacy_createStore as createStore } from "redux";
 import { createSlice, configureStore } from '@reduxjs/toolkit'
 
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 
 const counterSlice = createSlice({
     name: 'counter',
-    initialState: initialState,  // Kezdeti állapot
+    initialState: initialCounterState,  // Kezdeti állapot
     reducers: {
         increment(state) {
             state.counter++;
@@ -19,6 +19,23 @@ const counterSlice = createSlice({
         toggleCounter(state) {
             state.showCounter = !state.showCounter;
         },
+    }
+})
+
+const initialAuthState = {
+    isAuthenticated: false, 
+}
+
+const authSlices = createSlice({
+    name: 'auth',
+    initialState: initialAuthState,
+    reducers: {
+        login (state) {
+            state.isAuthenticated = true
+        },
+        loguot (state) {
+            state.isAuthenticated = false
+        }
     }
 })
 
@@ -58,9 +75,11 @@ const counterSlice = createSlice({
 };*/
 
 const store = configureStore({
-    reducer: counterSlice.reducer
+    reducer: { counter: counterSlice.reducer, auth: authSlices.reducer}
 });
 
 export const counterActions = counterSlice.actions; // "action" objektumokat hoz létre nekünk. Rendelkeznek típustulajdonsággal, műveletenként egyedi azonosítóval.
+
+export const authActions = authSlices.actions;
 
 export default store;
