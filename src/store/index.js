@@ -1,43 +1,14 @@
-import { legacy_createStore as createStore } from "redux";
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import counterSlice from './counter';
+import authentication from './authentication'
+import validate from './validate';
 
-const initialCounterState = { counter: 0, showCounter: true };
+const store = configureStore({
+    reducer: { counter: counterSlice, authentication: authentication, validate: validate}
+});
 
-const counterSlice = createSlice({
-    name: 'counter',
-    initialState: initialCounterState,  // Kezdeti állapot
-    reducers: {
-        increment(state) {
-            state.counter++;
-        },
-        decrement(state) {
-            state.counter--;
-        },
-        increase(state, action) {
-            state.counter = state.counter + action.payload;
-        },
-        toggleCounter(state) {
-            state.showCounter = !state.showCounter;
-        },
-    }
-})
 
-const initialAuthState = {
-    isAuthenticated: false, 
-}
-
-const authSlices = createSlice({
-    name: 'auth',
-    initialState: initialAuthState,
-    reducers: {
-        login (state) {
-            state.isAuthenticated = true
-        },
-        loguot (state) {
-            state.isAuthenticated = false
-        }
-    }
-})
+export default store;
 
 /*const counterReducer = (state = initialState, action) => {
   // A state-nek (counter) adok egy kezdeti értéket, mert a reduktor első futásakor még nincs értéke és undefined hibát írna.
@@ -74,12 +45,4 @@ const authSlices = createSlice({
   return state; // Ha egyik feltétel sem teljesül akkor visszatér az eredeti értékkel (0).
 };*/
 
-const store = configureStore({
-    reducer: { counter: counterSlice.reducer, auth: authSlices.reducer}
-});
 
-export const counterActions = counterSlice.actions; // "action" objektumokat hoz létre nekünk. Rendelkeznek típustulajdonsággal, műveletenként egyedi azonosítóval.
-
-export const authActions = authSlices.actions;
-
-export default store;
