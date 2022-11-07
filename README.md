@@ -1,4 +1,6 @@
-# React-Redux![image](https://user-images.githubusercontent.com/82768146/199301276-9cffd305-d6ef-41c1-af88-f4ba14b5a76b.JPG)
+<h1 align="center">React-Redux</h1>
+
+![image](https://user-images.githubusercontent.com/82768146/199301276-9cffd305-d6ef-41c1-af88-f4ba14b5a76b.JPG)
 
 ![image2](https://user-images.githubusercontent.com/82768146/199301625-1461361d-0bbe-48bb-a083-917448a7249c.JPG)
 
